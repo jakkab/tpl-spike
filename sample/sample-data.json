@@ -1,0 +1,33 @@
+{
+  "invoiceNo": "357",
+  "created": "12-01-2020",
+  "due": "12-31-2020",
+  "address": {
+    "name": "ABB/HPG",
+    "street": "ul. L. R. Pawlaka 4",
+    "postalCode": "99-666",
+    "city": "Pacanow"
+  },
+  "addressee": {
+    "title": "ABB CEO",
+    "name": "Christian Paul",
+    "email": "c.paul@abb.com"
+  },
+  "paymentMethod": "cash",
+  "checkNo": "1000",
+  "items": [
+    {
+      "description": "nieudane wybory korespondencyjne",
+      "price": "PLN 70,000,000.00"
+    },
+    {
+      "description": "lewe maseczki i respiratory",
+      "price": "PLN 20,000,000.00"
+    },
+    {
+      "description": "Osmiorniczki na obiad dyplomatyczny",
+      "price": "PLN 370.00"
+    }
+  ],
+  "total": "w pizdu, wszystko za nasze podatki"
+}
