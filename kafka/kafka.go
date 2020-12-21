@@ -6,7 +6,7 @@ import (
 	"github.com/segmentio/kafka-go"
 )
 
-func ConfigureAndStartConsumer(c chan string, brokerAddr, topic, groupID string) {
+func ConfigureAndStartConsumer(c chan []byte, brokerAddr, topic, groupID string) {
 
 	cfg := kafka.ReaderConfig{
 		Brokers:  []string{brokerAddr},
@@ -24,6 +24,6 @@ func ConfigureAndStartConsumer(c chan string, brokerAddr, topic, groupID string)
 			continue
 		}
 
-		c <- string(msg.Value)
+		c <- msg.Value
 	}
 }

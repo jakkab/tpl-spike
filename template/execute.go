@@ -2,83 +2,62 @@ package template
 
 import (
 	"encoding/json"
-	pdf "github.com/SebastiaanKlippert/go-wkhtmltopdf"
+	"errors"
+	"fmt"
 	"html/template"
 	"io"
 	"io/ioutil"
-	"log"
-	"os"
+	"net/http"
 )
 
-var (
-	tmplFile           = "./sample/template.html"
-	jsonFilePath       = "./sample/sample-data.json"
-	outputHtmlFilename = "output.html"
-	outputPdfFileName  = "/media/sf_PLJAKAB/output.pdf"
-)
-
-type source struct {
-	templateURL string
-	dataURL     string
+type Source struct {
+	TemplateURL string `json:"templateURL"`
+	JSONDataURL string `json:"jsonDataURL"`
 }
 
-func (s *source) Compile(w io.WriterAt) {
-	dataBytes, err := ioutil.ReadFile(jsonFilePath)
+func (s *Source) Compile(w io.Writer) error {
+
+	dataResponse, err := http.Get(s.JSONDataURL)
 	if err != nil {
-		log.Fatal(err)
+		return err
+	}
+	defer dataResponse.Body.Close()
+
+	if dataResponse.StatusCode != http.StatusOK {
+		return errors.New(fmt.Sprintf("Unable to fetch %s status: %d: %s", s.JSONDataURL, dataResponse.StatusCode, dataResponse.Status))
 	}
 
-	dataMap, err := parseJson(dataBytes)
+	dataMap, err := parseJson(dataResponse.Body)
 	if err != nil {
-		log.Fatalf("unable to convert json: %s", err.Error())
+		return err
 	}
 
-	tmpl, err := template.ParseFiles(tmplFile)
+	templateResponse, err := http.Get(s.TemplateURL)
 	if err != nil {
-		log.Fatalf("unable to parse: %s", err.Error())
+		return err
+	}
+	defer templateResponse.Body.Close()
+
+	if templateResponse.StatusCode != http.StatusOK {
+		return errors.New(fmt.Sprintf("Unable to fetch %s status: %d: %s", s.TemplateURL, templateResponse.StatusCode, templateResponse.Status))
 	}
 
-	output, err := os.Create(outputHtmlFilename)
+	htmlTemplateBytes, err := ioutil.ReadAll(templateResponse.Body)
 	if err != nil {
-		log.Fatalf("unable to create file: %s, %s", outputHtmlFilename, err.Error())
+		return err
 	}
 
-	if err = tmpl.Execute(output, dataMap); err != nil {
-		log.Fatalf("unable to execute template: %s", err.Error())
-	}
-
-	/// Part 2, separate microservice to convert html file to pdf, I guess
-
-	pdfGen, err := pdf.NewPDFGenerator()
+	tmpl, err := template.New("test").Parse(string(htmlTemplateBytes))
 	if err != nil {
-		log.Fatalf("unable to init pdf generator: %s", err.Error())
+		return err
 	}
 
-	htmlContent, err := os.Open(outputHtmlFilename)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	pdfGen.AddPage(pdf.NewPageReader(htmlContent))
-
-	err = pdfGen.Create()
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	err = pdfGen.WriteFile(outputPdfFileName)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	//if err := os.Remove(outputHtmlFilename); err != nil {
-	//	fmt.Printf("unable to remove intermediate html file %s", outputHtmlFilename)
-	//}
+	return tmpl.Execute(w, dataMap)
 }
 
-func parseJson(b []byte) (map[string]interface{}, error) {
+func parseJson(r io.Reader) (map[string]interface{}, error) {
 	m := make(map[string]interface{})
-	if err := json.Unmarshal(b, &m); err != nil {
+	if err := json.NewDecoder(r).Decode(&m); err != nil {
 		return nil, err
 	}
 	return m, nil

@@ -1,4 +1,4 @@
-FROM golang:1.13 AS builder
+FROM golang:alpine AS builder
 
 ENV GO111MODULE=on \
     CGO_ENABLED=0 \
@@ -6,6 +6,8 @@ ENV GO111MODULE=on \
     GOARCH=amd64
 
 WORKDIR /workspace
+
+RUN apk --update add ca-certificates
 
 # Copy and download dependency using go mod
 COPY go.mod .
@@ -22,9 +24,8 @@ RUN go build -a -o compiler main.go
 
 # Use distroless as minimal base image to package the manager binary
 # Refer to https://github.com/GoogleContainerTools/distroless for more details
-FROM gcr.io/distroless/static:nonroot
-WORKDIR /
-COPY --from=builder /workspace/compiler .
-USER nonroot:nonroot
+FROM scratch
+COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
+COPY --from=builder /workspace/compiler /
 
 ENTRYPOINT ["/compiler"]
