@@ -24,6 +24,6 @@ func ConfigureAndStartConsumer(c chan string, brokerAddr, topic, groupID string)
 			continue
 		}
 
-		c <-string(msg.Value)
+		c <- string(msg.Value)
 	}
 }

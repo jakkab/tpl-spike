@@ -13,12 +13,12 @@ COPY go.sum .
 RUN go mod download
 
 # Copy the code into the container
-COPY main.go .
-COPY kafka/ .
-COPY template/ .
+COPY main.go main.go
+COPY kafka/ kafka/
+COPY template/ template/
 
 # Build the application
-RUN go build -o compiler main.go
+RUN go build -a -o compiler main.go
 
 # Use distroless as minimal base image to package the manager binary
 # Refer to https://github.com/GoogleContainerTools/distroless for more details
