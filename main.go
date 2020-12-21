@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	consumer "github.com/jakkab/tpl-spike/kafka"
+	"github.com/jakkab/tpl-spike/kafka"
 )
 
 var (
@@ -16,7 +16,7 @@ func main() {
 	fmt.Println("Kafka consumer starting...")
 
 	c := make(chan string)
-	go consumer.ConfigureAndStartConsumer(c, brokerAddr, topic, group)
+	go kafka.ConfigureAndStartConsumer(c, brokerAddr, topic, group)
 
 	fmt.Println("Kafka consumer up and running")
 
