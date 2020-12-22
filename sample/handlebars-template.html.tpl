@@ -111,9 +111,9 @@
                         </td>
 
                         <td>
-                            Invoice #: {{.invoiceNo}}<br>
-                            Created: {{.created}}<br>
-                            Due: {{.due}}
+                            Invoice #: {{invoiceNo}}<br>
+                            Created: {{created}}<br>
+                            Due: {{due}}
                         </td>
                     </tr>
                 </table>
@@ -125,15 +125,15 @@
                 <table>
                     <tr>
                         <td>
-                            {{.address.name}}<br>
-                            {{.address.street}}<br>
-                            {{.address.postalCode}}, {{.address.city}}
+                            {{address.name}}<br>
+                            {{address.street}}<br>
+                            {{address.postalCode}}, {{address.city}}
                         </td>
 
                         <td>
-                            {{.addressee.title}}<br>
-                            {{.addressee.name}}<br>
-                            {{.addressee.email}}
+                            {{addressee.title}}<br>
+                            {{addressee.name}}<br>
+                            {{addressee.email}}
                         </td>
                     </tr>
                 </table>
@@ -152,11 +152,11 @@
 
         <tr class="details">
             <td>
-                {{.paymentMethod}}
+                {{paymentMethod}}
             </td>
 
             <td>
-                {{.checkNo}}
+                {{checkNo}}
             </td>
         </tr>
 
@@ -170,23 +170,23 @@
             </td>
         </tr>
 
-        {{range .items}}
+        {{#each items}}
             <tr class="item">
                 <td>
-                    {{.description}}
+                    {{description}}
                 </td>
 
                 <td>
-                    {{.price}}
+                    {{price}}
                 </td>
             </tr>
-        {{end}}
+        {{/each}}
 
         <tr class="total">
             <td></td>
 
             <td>
-                Total: {{.total}}
+                Total: {{total}}
             </td>
         </tr>
     </table>
