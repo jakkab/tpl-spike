@@ -11,11 +11,7 @@ import (
 	"github.com/jakkab/tpl-spike/template"
 	"google.golang.org/api/option"
 	"log"
-	"os"
-	"time"
 )
-
-const outputFilenameFmt = "compiled-%s.html"
 
 var (
 	brokerAddr      = flag.String("kafka", "", "kafka broker address")
@@ -24,6 +20,11 @@ var (
 	bucket          = "tpl-spike"
 	credentialsFile = "/etc/sa/sa_key.json"
 )
+
+type Source struct {
+	TemplateURL string `json:"templateURL"`
+	JSONDataURL string `json:"jsonDataURL"`
+}
 
 func main() {
 
@@ -42,20 +43,17 @@ func main() {
 	if err != nil {
 		log.Fatal("Unable to init GCP storage client")
 	}
-
-	uploader := gcp.NewUploader(storageClient)
-
-	fmt.Println("Configuring Kafka consumer...")
+	uploader := gcp.NewGcpUploader(storageClient, bucket)
 
 	c := make(chan []byte)
+	fmt.Println("Configuring Kafka consumer...")
 	go kafka.ConfigureAndStartConsumer(c, *brokerAddr, *topic, *group)
-
 	fmt.Printf("Kafka consumer listening on %s, subscribed to topic %s", *brokerAddr, *topic)
 
 	for msg := range c {
 
 		func() {
-			s := new(template.Source)
+			s := new(Source)
 			if err := json.Unmarshal(msg, s); err != nil {
 				fmt.Println("Invalid input data")
 				return
@@ -64,19 +62,15 @@ func main() {
 			fmt.Printf("\nJson comes from %s", s.JSONDataURL)
 			fmt.Printf("\nTemplate comes from %s", s.TemplateURL)
 
-			outputFilename := fmt.Sprintf(outputFilenameFmt, time.Now().String())
-			outputFile, err := os.Create(outputFilename)
-			if err != nil {
-				fmt.Printf("unable to create file: %s, %s", outputFilename, err.Error())
-				return
-			}
+			bc := &template.GoBasic{}
 
-			if err := s.Compile(outputFile); err != nil {
+			outputFilename, err := bc.Compile(s.TemplateURL, s.JSONDataURL)
+			if err != nil {
 				fmt.Println(err)
 				return
 			}
 
-			if err := uploader.Do(ctx, outputFilename, bucket); err != nil {
+			if err := uploader.Do(ctx, outputFilename); err != nil {
 				fmt.Println(err)
 				return
 			}

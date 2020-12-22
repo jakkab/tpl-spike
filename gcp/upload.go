@@ -9,19 +9,20 @@ import (
 	"time"
 )
 
-type uploader struct {
+type gcpUploader struct {
 	client *storage.Client
+	bucket string
 }
 
-func NewUploader(c *storage.Client) *uploader {
-	return &uploader{
+func NewGcpUploader(c *storage.Client, bucket string) *gcpUploader {
+	return &gcpUploader{
 		client: c,
+		bucket: bucket,
 	}
 }
 
-func (u *uploader) Do(ctx context.Context, sourceFileName, bucket string) error {
+func (u *gcpUploader) Do(ctx context.Context, sourceFileName string) error {
 
-	// Open local file.
 	f, err := os.Open(sourceFileName)
 	if err != nil {
 		return fmt.Errorf("os.Open: %v", err)
@@ -32,7 +33,7 @@ func (u *uploader) Do(ctx context.Context, sourceFileName, bucket string) error 
 	defer cancel()
 
 	// Upload an object with storage.Writer.
-	wc := u.client.Bucket(bucket).Object(sourceFileName).NewWriter(ctx)
+	wc := u.client.Bucket(u.bucket).Object(sourceFileName).NewWriter(ctx)
 
 	if _, err = io.Copy(wc, f); err != nil {
 		return fmt.Errorf("io.Copy: %v", err)
