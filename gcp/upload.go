@@ -5,7 +5,7 @@ import (
 	"context"
 	"fmt"
 	"io"
-	"os"
+	"strings"
 	"time"
 )
 
@@ -21,21 +21,15 @@ func NewGcpUploader(c *storage.Client, bucket string) *gcpUploader {
 	}
 }
 
-func (u *gcpUploader) Do(ctx context.Context, sourceFileName string) error {
-
-	f, err := os.Open(sourceFileName)
-	if err != nil {
-		return fmt.Errorf("os.Open: %v", err)
-	}
-	defer f.Close()
+func (u *gcpUploader) Do(ctx context.Context, content, fileName string) error {
 
 	ctx, cancel := context.WithTimeout(ctx, time.Second*50)
 	defer cancel()
 
 	// Upload an object with storage.Writer.
-	wc := u.client.Bucket(u.bucket).Object(sourceFileName).NewWriter(ctx)
+	wc := u.client.Bucket(u.bucket).Object(fileName).NewWriter(ctx)
 
-	if _, err = io.Copy(wc, f); err != nil {
+	if _, err := io.Copy(wc, strings.NewReader(content)); err != nil {
 		return fmt.Errorf("io.Copy: %v", err)
 	}
 
@@ -43,6 +37,6 @@ func (u *gcpUploader) Do(ctx context.Context, sourceFileName string) error {
 		return fmt.Errorf("Writer.Close: %v", err)
 	}
 
-	fmt.Printf("\nBlob %v uploaded.\n", sourceFileName)
+	fmt.Printf("\nBlob %v uploaded.\n", fileName)
 	return nil
 }

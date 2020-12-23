@@ -16,9 +16,10 @@ RUN go mod download
 
 # Copy the code into the container
 COPY main.go main.go
+COPY assets/ assets/
 COPY kafka/ kafka/
 COPY gcp/ gcp/
-COPY template/ template/
+COPY tpl tpl/
 
 # Build the application
 RUN go build -a -o compiler main.go

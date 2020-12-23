@@ -6,12 +6,16 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"github.com/jakkab/tpl-spike/assets"
 	"github.com/jakkab/tpl-spike/gcp"
 	"github.com/jakkab/tpl-spike/kafka"
-	"github.com/jakkab/tpl-spike/template"
+	"github.com/jakkab/tpl-spike/tpl"
 	"google.golang.org/api/option"
 	"log"
+	"time"
 )
+
+const outputFilenameFmt = "compiled-%s.html"
 
 var (
 	brokerAddr      = flag.String("kafka", "", "kafka broker address")
@@ -21,9 +25,8 @@ var (
 	credentialsFile = "/etc/sa/sa_key.json"
 )
 
-type Source struct {
-	TemplateURL string `json:"templateURL"`
-	JSONDataURL string `json:"jsonDataURL"`
+type compiler interface {
+	Compile([]byte, map[string]interface{}) (string, error)
 }
 
 func main() {
@@ -45,32 +48,51 @@ func main() {
 	}
 	uploader := gcp.NewGcpUploader(storageClient, bucket)
 
-	c := make(chan []byte)
+	ch := make(chan []byte)
 	fmt.Println("Configuring Kafka consumer...")
-	go kafka.ConfigureAndStartConsumer(c, *brokerAddr, *topic, *group)
+	go kafka.ConfigureAndStartConsumer(ch, *brokerAddr, *topic, *group)
 	fmt.Printf("Kafka consumer listening on %s, subscribed to topic %s", *brokerAddr, *topic)
 
-	for msg := range c {
+	for msg := range ch {
 
 		func() {
-			s := new(Source)
+
+			s := new(assets.Source)
 			if err := json.Unmarshal(msg, s); err != nil {
 				fmt.Println("Invalid input data")
 				return
 			}
 
-			fmt.Printf("\nJson comes from %s", s.JSONDataURL)
-			fmt.Printf("\nTemplate comes from %s", s.TemplateURL)
-
-			bc := &template.GoBasic{}
-
-			outputFilename, err := bc.Compile(s.TemplateURL, s.JSONDataURL)
+			tplBytes, err := s.DownloadTemplate()
 			if err != nil {
-				fmt.Println(err)
+				fmt.Println(err.Error())
 				return
 			}
 
-			if err := uploader.Do(ctx, outputFilename); err != nil {
+			dataMap, err := s.DownloadDataSource()
+			if err != nil {
+				fmt.Println(err.Error())
+				return
+			}
+
+			var c compiler
+			switch s.TemplateType {
+			case "go":
+				c = &tpl.GoBasic{}
+			case "handlebars":
+				c = &tpl.Handlebars{}
+			default:
+				fmt.Printf("\nUnknown template type: %s", s.TemplateType)
+				return
+			}
+
+			content, err := c.Compile(tplBytes, dataMap)
+			if err != nil {
+				fmt.Println(err.Error())
+				return
+			}
+
+			if err := uploader.Do(ctx, content, fmt.Sprintf(outputFilenameFmt, time.Now().Format(time.RFC3339Nano))); err != nil {
 				fmt.Println(err)
 				return
 			}
