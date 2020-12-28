@@ -1,0 +1,19 @@
+{
+  "property": "some value",
+  "list": [
+    {
+      "listProperty": "bla bla bla",
+      "nestedList": [
+        "elem1",
+        "elem2"
+      ]
+    },
+    {
+      "listProperty": "foo bar",
+      "nestedList": [
+        "elem3",
+        "elem4"
+      ]
+    }
+  ]
+}
