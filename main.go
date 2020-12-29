@@ -59,7 +59,7 @@ func main() {
 
 			s := new(assets.Source)
 			if err := json.Unmarshal(msg, s); err != nil {
-				fmt.Println("Invalid input data")
+				fmt.Println("Invalid input data:", err)
 				return
 			}
 
@@ -88,7 +88,7 @@ func main() {
 
 			content, err := c.Compile(tplBytes, dataMap)
 			if err != nil {
-				fmt.Println(err.Error())
+				fmt.Println("Compiling error:", err.Error())
 				return
 			}
 
