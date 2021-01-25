@@ -70,7 +70,9 @@
         }
 
         @media print {
-            .pagebreak { page-break-before: always; }
+            .pagebreak {
+                page-break-before: always;
+            }
         }
 
         @media only screen and (max-width: 600px) {
@@ -211,17 +213,19 @@
         </tr>
     </table>
 
-    <table class="pagebreak">
-        <tr class="details">
-            <td>
-                {{.paymentMethod}}
-            </td>
+    <div class="pagebreak">
+        <table>
+            <tr class="details">
+                <td>
+                    {{.paymentMethod}}
+                </td>
 
-            <td>
-                {{.checkNo}}
-            </td>
-        </tr>
-    </table>
+                <td>
+                    {{.checkNo}}
+                </td>
+            </tr>
+        </table>
+    </div>
 
     <table>
         <tfoot>
