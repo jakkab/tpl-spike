@@ -1,0 +1,85 @@
+{
+  "invoiceNo": "357",
+  "created": "12-01-2020",
+  "due": "12-31-2020",
+  "address": {
+    "name": "ABB/HPG",
+    "street": "ul. L. R. Pawlaka 4",
+    "postalCode": "99-666",
+    "city": "Pacanow"
+  },
+  "addressee": {
+    "title": "ABB CEO",
+    "name": "Christian Paul",
+    "email": "c.paul@abb.com"
+  },
+  "paymentMethod": "cash",
+  "checkNo": "1000",
+  "items": [
+    {
+      "description": "item 1",
+      "price": "PLN 70,000,000.00"
+    },
+    {
+      "description": "item 2",
+      "price": "PLN 20,000,000.00"
+    },
+    {
+      "description": "item 3",
+      "price": "PLN 370.00"
+    },
+    {
+      "description": "item 4",
+      "price": "PLN 987.00"
+    },
+    {
+      "description": "item 5",
+      "price": "PLN 3.00"
+    },
+    {
+      "description": "item 6",
+      "price": "PLN 70.00"
+    },
+    {
+      "description": "item 7",
+      "price": "PLN 30.00"
+    },
+    {
+      "description": "item 8",
+      "price": "PLN 370.00"
+    },
+    {
+      "description": "item 9",
+      "price": "PLN 134.00"
+    },
+    {
+      "description": "item 10",
+      "price": "PLN 100.00"
+    },
+    {
+      "description": "item 11",
+      "price": "PLN 55.00"
+    },
+    {
+      "description": "item 12",
+      "price": "PLN 11.00"
+    },
+    {
+      "description": "item 13",
+      "price": "PLN 123.00"
+    },    {
+      "description": "item 14",
+      "price": "PLN 3.00"
+    },    {
+      "description": "item 15",
+      "price": "PLN 12.00"
+    },    {
+      "description": "item 16",
+      "price": "PLN 386.00"
+    },    {
+      "description": "item 17",
+      "price": "PLN 387.00"
+    }
+  ],
+  "total": "PLN 1234567890.00"
+}
