@@ -87,6 +87,22 @@
             margin: 3cm;
         }
 
+        div.header {
+            display: block; text-align: center;
+            position: running(header);
+        }
+        div.footer {
+            display: block; text-align: center;
+            position: running(footer);
+        }
+
+        @page {
+            @top-center { content: element(header) }
+        }
+        @page {
+            @bottom-center { content: element(footer) }
+        }
+
         .rtl table {
             text-align: right;
         }
@@ -114,6 +130,7 @@
 
 <body>
 <div class="invoice-box">
+    <div class='footer'>ABB HEADER XD</div>
     <table cellpadding="0" cellspacing="0">
         <tr class="top">
             <td colspan="2">
@@ -218,31 +235,7 @@
             </tr>
         </table>
     </div>
-
-    <div>
-        <table>
-            <tr class="details">
-                <td>
-                    {{.paymentMethod}}
-                </td>
-
-                <td>
-                    {{.checkNo}}
-                </td>
-            </tr>
-        </table>
-    </div>
-
-    <table>
-        <tfoot>
-        <tr>
-            <td>
-                <div class="footer-space">&nbsp;</div>
-            </td>
-        </tr>
-        </tfoot>
-    </table>
-    <div class="footer">tu jakies tekst, nie wiem, cokolwiek xd</div>
+    <div class='footer'>ABB FOOTER XD</div>
 </div>
 </body>
 </html>
