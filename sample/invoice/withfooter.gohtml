@@ -83,52 +83,77 @@
             }
         }
 
-        /*@page {*/
-        /*    margin: 3cm;*/
-        /*}*/
-
-        .header, .header-space,
-        .footer, .footer-space {
-            height: 100px;
-        }
-
-        .header {
-            position: fixed;
-            top: 0;
-        }
-
-        .footer {
-            position: fixed;
-            bottom: 0;
-        }
-
         .rtl table {
             text-align: right;
         }
+
+        /* custom config start */
 
         .rtl table tr td:nth-child(2) {
             text-align: left;
         }
 
+        .page-header, .page-header-space {
+            height: 100px;
+        }
+
+        .page-footer, .page-footer-space {
+            height: 50px;
+
+        }
+
+        .page-footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            border-top: 1px solid black; /* for demo */
+            background: yellow; /* for demo */
+        }
+
+        .page-header {
+            position: fixed;
+            top: 0mm;
+            width: 100%;
+            border-bottom: 1px solid black; /* for demo */
+            background: yellow; /* for demo */
+        }
+
+        .page {
+            page-break-after: always;
+        }
+
+        @page {
+            margin: 20mm
+        }
+
+        /* custom config end */
+
     </style>
 </head>
 
 <body>
-<div class="invoice-box">
 
-    <div class="header">ABB Header</div>
+    <div class="page-header" style="text-align: center">
+        I'm The Header
+    </div>
 
-    <table cellpadding="0" cellspacing="0">
+    <div class="page-footer">
+        I'm The Footer
+    </div>
 
-        <thead>
-            <tr>
-                <td>
-                    <div class="header-space">&nbsp;</div>
-                </td>
-            </tr>
-        </thead>
+    <div class="invoice-box">
 
-        <tbody>
+        <table cellpadding="0" cellspacing="0">
+
+            <thead>
+                <tr>
+                    <td>
+                        <div class="page-header-space"></div>
+                    </td>
+                </tr>
+            </thead>
+
+            <tbody>
             <tr class="top">
                 <td colspan="2">
                     <table>
@@ -217,34 +242,31 @@
                     Total: {{.total}}
                 </td>
             </tr>
-        </tbody>
+            </tbody>
 
-        <tfoot>
-            <tr>
-                <td>
-                    <div class="footer-space">&nbsp;</div>
-                </td>
-            </tr>
-        </tfoot>
+            <tfoot>
+                <tr>
+                    <td>
+                        <div class="page-footer-space"></div>
+                    </td>
+                </tr>
+            </tfoot>
 
-    </table>
-
-    <div style="page-break-before:always; page-break-after: always" ;>
-        <table>
-            <tr class="details">
-                <td>
-                    {{.paymentMethod}}
-                </td>
-
-                <td>
-                    {{.checkNo}}
-                </td>
-            </tr>
         </table>
+
+        <div class="page">
+            <table>
+                <tr class="details">
+                    <td>
+                        {{.paymentMethod}}
+                    </td>
+
+                    <td>
+                        {{.checkNo}}
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
-
-    <div class="footer">ABB Footer</div>
-
-</div>
 </body>
 </html>
