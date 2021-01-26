@@ -69,12 +69,6 @@
             font-weight: bold;
         }
 
-        @media print {
-            .pagebreak {
-                page-break-before: always;
-            }
-        }
-
         @media only screen and (max-width: 600px) {
             .invoice-box table tr.top table td {
                 width: 100%;
@@ -213,7 +207,21 @@
         </tr>
     </table>
 
-    <div class="pagebreak">
+    <div style="page-break-before:always; page-break-after: always"; >
+        <table>
+            <tr class="details">
+                <td>
+                    {{.paymentMethod}}
+                </td>
+
+                <td>
+                    {{.checkNo}}
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
         <table>
             <tr class="details">
                 <td>
