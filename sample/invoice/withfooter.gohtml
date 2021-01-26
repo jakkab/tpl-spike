@@ -83,24 +83,23 @@
             }
         }
 
-        @page {
-            margin: 3cm;
+        /*@page {*/
+        /*    margin: 3cm;*/
+        /*}*/
+
+        .header, .header-space,
+        .footer, .footer-space {
+            height: 100px;
         }
 
-        div.header {
-            display: block; text-align: center;
-            position: running(header);
-        }
-        div.footer {
-            display: block; text-align: center;
-            position: running(footer);
+        .header {
+            position: fixed;
+            top: 0;
         }
 
-        @page {
-            @top-center { content: element(header) }
-        }
-        @page {
-            @bottom-center { content: element(footer) }
+        .footer {
+            position: fixed;
+            bottom: 0;
         }
 
         .rtl table {
@@ -111,118 +110,126 @@
             text-align: left;
         }
 
-        /*.header, .header-space,*/
-        .footer, .footer-space {
-            height: 100px;
-        }
-
-        /*.header {*/
-        /*    position: fixed;*/
-        /*    top: 0;*/
-        /*}*/
-        .footer {
-            position: fixed;
-            bottom: 0;
-        }
-
     </style>
 </head>
 
 <body>
 <div class="invoice-box">
-    <div class='footer'>ABB HEADER XD</div>
+
+    <div class="header">ABB Header</div>
+
     <table cellpadding="0" cellspacing="0">
-        <tr class="top">
-            <td colspan="2">
-                <table>
-                    <tr>
-                        <td class="title">
-                            <img src="https://seekvectorlogo.com/wp-content/uploads/2018/02/abb-vector-logo.png"
-                                 style="width:100%; max-width:300px;">
-                        </td>
 
-                        <td>
-                            Invoice #: {{.invoiceNo}}<br>
-                            Created: {{.created}}<br>
-                            Due: {{.due}}
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-
-        <tr class="information">
-            <td colspan="2">
-                <table>
-                    <tr>
-                        <td>
-                            {{.address.name}}<br>
-                            {{.address.street}}<br>
-                            {{.address.postalCode}}, {{.address.city}}
-                        </td>
-
-                        <td>
-                            {{.addressee.title}}<br>
-                            {{.addressee.name}}<br>
-                            {{.addressee.email}}
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-
-        <tr class="heading">
-            <td>
-                Payment Method
-            </td>
-
-            <td>
-                Check #
-            </td>
-        </tr>
-
-        <tr class="details">
-            <td>
-                {{.paymentMethod}}
-            </td>
-
-            <td>
-                {{.checkNo}}
-            </td>
-        </tr>
-
-        <tr class="heading">
-            <td>
-                Item
-            </td>
-
-            <td>
-                Price
-            </td>
-        </tr>
-
-        {{range .items}}
-            <tr class="item">
+        <thead>
+            <tr>
                 <td>
-                    {{.description}}
-                </td>
-
-                <td>
-                    {{.price}}
+                    <div class="header-space">&nbsp;</div>
                 </td>
             </tr>
-        {{end}}
+        </thead>
 
-        <tr class="total">
-            <td></td>
+        <tbody>
+            <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td class="title">
+                                <img src="https://seekvectorlogo.com/wp-content/uploads/2018/02/abb-vector-logo.png"
+                                     style="width:100%; max-width:300px;">
+                            </td>
 
-            <td>
-                Total: {{.total}}
-            </td>
-        </tr>
+                            <td>
+                                Invoice #: {{.invoiceNo}}<br>
+                                Created: {{.created}}<br>
+                                Due: {{.due}}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr class="information">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                {{.address.name}}<br>
+                                {{.address.street}}<br>
+                                {{.address.postalCode}}, {{.address.city}}
+                            </td>
+
+                            <td>
+                                {{.addressee.title}}<br>
+                                {{.addressee.name}}<br>
+                                {{.addressee.email}}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr class="heading">
+                <td>
+                    Payment Method
+                </td>
+
+                <td>
+                    Check #
+                </td>
+            </tr>
+
+            <tr class="details">
+                <td>
+                    {{.paymentMethod}}
+                </td>
+
+                <td>
+                    {{.checkNo}}
+                </td>
+            </tr>
+
+            <tr class="heading">
+                <td>
+                    Item
+                </td>
+
+                <td>
+                    Price
+                </td>
+            </tr>
+
+            {{range .items}}
+                <tr class="item">
+                    <td>
+                        {{.description}}
+                    </td>
+
+                    <td>
+                        {{.price}}
+                    </td>
+                </tr>
+            {{end}}
+
+            <tr class="total">
+                <td></td>
+
+                <td>
+                    Total: {{.total}}
+                </td>
+            </tr>
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <td>
+                    <div class="footer-space">&nbsp;</div>
+                </td>
+            </tr>
+        </tfoot>
+
     </table>
 
-    <div style="page-break-before:always; page-break-after: always"; >
+    <div style="page-break-before:always; page-break-after: always" ;>
         <table>
             <tr class="details">
                 <td>
@@ -235,7 +242,9 @@
             </tr>
         </table>
     </div>
-    <div class='footer'>ABB FOOTER XD</div>
+
+    <div class="footer">ABB Footer</div>
+
 </div>
 </body>
 </html>
