@@ -1,0 +1,35 @@
+{
+  "invoiceNo": "357",
+  "created": "12-01-2020",
+  "due": "12-31-2020",
+  "address": {
+    "name": "ABB/HPG",
+    "street": "ul. Warszawska 5",
+    "postalCode": "00-000",
+    "city": "Krakow"
+  },
+  "addressee": {
+    "title": "ABB CEO",
+    "name": "Christian Paul",
+    "email": "c.paul@abb.com"
+  },
+  "paymentMethod": "cash",
+  "checkNo": "1000",
+  "items": [
+    {
+      "description": "power grid maintenance",
+      "quantity": "8",
+      "unit": "hour",
+      "unitPrice": "$60",
+      "price": "$480"
+    },
+    {
+      "description": "2,5mm2 copper cable",
+      "quantity": "100",
+      "unit": "foot",
+      "unitPrice": "$5",
+      "price": "$500"
+    }
+  ],
+  "total": "$980.00"
+}
