@@ -19,14 +19,14 @@
     {
       "description": "power grid maintenance",
       "quantity": "8",
-      "unit": "hour",
+      "unit": "hr",
       "unitPrice": "$60",
       "price": "$480"
     },
     {
       "description": "2,5mm2 copper cable",
       "quantity": "100",
-      "unit": "foot",
+      "unit": "ft",
       "unitPrice": "$5",
       "price": "$500"
     }
