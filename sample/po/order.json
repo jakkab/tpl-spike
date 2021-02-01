@@ -1,0 +1,42 @@
+{
+    "number" : "PS08623",
+    "version" : "0001",
+    "items" : [
+        {
+            "description": "STAINLESS, BOLT, PIN HEAD HEX",
+            "quantity": "",
+            "unit": "EA",
+            "delivery_date": "21/02/2021",
+            "unit_price": "100",
+            "total_price": "100"
+        },
+        {
+            "description": "RESPIRATOR FILTER",
+            "quantity": "10",
+            "unit": "PK",
+            "delivery_date": "21/02/2021",
+            "unit_price": "100",
+            "total_price": "1000"
+        },
+        {
+            "description": "CHERRY PIE",
+            "quantity": "1",
+            "unit": "EA",
+            "delivery_date": "21/02/2021",
+            "unit_price": "20",
+            "total_price": "20"
+        },
+        {
+            "description": "BUMBULATOR TRÓJFAZOWY WSTECZNY Z PRZYCZŁAPKĄ BOCZNĄ",
+            "quantity": "1",
+            "unit": "PK",
+            "delivery_date": "21/02/2021",
+            "unit_price": "1500,2900",
+            "total_price": "1500,2900"
+        }
+    ],
+    "summary": {
+        "total_number_of_items": "Total Number Of Items : 3",
+        "total_value": "Total P.O. Value Ex GST: 1,916.99"
+    }
+}

@@ -1,0 +1,336 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Hitachi ABB - PowerGrids - Work Order</title>
+    
+    <style>
+    .workorder-box {
+        max-width: 800px;
+        margin: auto;
+        padding: 30px;
+        border: 1px solid #eee;
+        box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+        font-size: 16px;
+        line-height: 24px;
+        font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+        color: #555;
+    }
+    
+    .workorder-box table {
+        width: 100%;
+        line-height: inherit;
+        text-align: left;
+        
+    }
+    
+    .workorder-box table td {
+        padding: 5px;
+        vertical-align: top;
+    }
+    
+    .workorder-box table tr.information td:nth-child(2) {
+        text-align: right;
+    }
+    
+    .workorder-box table tr.top table td {
+        padding-bottom: 20px;
+    }
+    
+    .workorder-box table tr.top table td.title {
+        font-size: 45px;
+        line-height: 45px;
+        color: #333;
+    }
+    
+    .workorder-box table tr.information table td {
+        /* padding-bottom: 40px; */
+        font-size: small;
+    }
+    
+    .workorder-box table tr.heading {
+        border: 1px solid black;
+    }
+    .workorder-box table {
+        border-collapse: collapse; 
+    }
+
+    .workorder-box table tr.heading td {
+        background-color: #deebff;
+        border: none;
+    }
+    
+    .workorder-box table tr.details td {
+        /* padding-bottom: 20px; */
+        font-size: small;
+    }
+
+    .workorder-box table tr.summary td {
+        /* padding-bottom: 20px; */
+        font-weight: bold;
+    }
+    
+    .workorder-box table tr.item td{
+        border-bottom: 1px solid #eee;
+    }
+    
+    .workorder-box table tr.item.last td {
+        border-bottom: none;
+    }
+    
+    .workorder-box table tr.total td:nth-child(2) {
+        border-top: 2px solid #eee;
+    }
+    
+    @media only screen and (max-width: 600px) {
+        .workorder-box table tr.top table td {
+            width: 100%;
+            display: block;
+            text-align: center;
+        }
+        
+        .workorder-box table tr.information table td {
+            width: 100%;
+            display: block;
+            text-align: center;
+        }
+    }
+
+    .workorder-box .blue {
+        background-color: #006bb6;
+        color: white;
+        font-size: x-large;
+    }
+
+    .workorder-box .light-blue {
+        background-color: #deebff;
+        color: black;
+    }
+
+    .imgRight {
+        float:  right;
+    }
+    
+    /** RTL **/
+    .rtl {
+        direction: rtl;
+        font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+    }
+    
+    .rtl table {
+        text-align: right;
+    }
+    
+    .rtl table tr td:nth-child(2) {
+        text-align: left;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="workorder-box">
+        <table cellpadding="0" cellspacing="0">
+            <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="blue">
+                                    Service order {{.number}}<br>
+                                    Version Number: {{.version}}<br>
+                                </div>
+                            </td>
+                            <td>
+                                <img src="https://www.hitachiabb-powergrids.com/content/experience-fragments/pg/www/en/site/header/master/_jcr_content/root/headercmp/image.coreimg.svg/1607592458407/powergrids-logo-web.svg" class="imgRight">
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            
+            <tr class="information">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="light-blue">
+                                    To:
+                                </div>
+                            </td>
+                            <td>
+                                Testerski
+                            </td>
+                            <td>
+                                <div class="light-blue">
+                                    Order Date:
+                                </div>
+                            </td>
+                            <td>
+                                2021/01/27
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="light-blue">
+                                    Address:
+                                </div>
+                            </td>
+                            <td>
+                                office
+                            </td>
+                            <td>
+                                <div class="light-blue">
+                                    Delivery Address:
+                                </div>
+                            </td>
+                            <td>
+                                Main Office <br/>
+                                ul. Pawia 7 <br/>
+                                31-154 Kraków <br/>
+                                Polska <br/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="light-blue">
+                                    Attn:
+                                </div>
+                            </td>
+                            <td>
+                                
+                            </td>
+                            <td>
+                                <div class="light-blue">
+                                    Purchasing Officer:
+                                </div>
+                            </td>
+                            <td>
+                                TESTERSKI
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="light-blue">
+                                    Phone No:
+                                </div>
+                            </td>
+                            <td>
+                                
+                            </td>
+                            <td>
+                                <div class="light-blue">
+                                    Phone No:
+                                </div>
+                            </td>
+                            <td>
+                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="light-blue">
+                                    Fax No:
+                                </div>
+                            </td>
+                            <td>
+                                
+                            </td>
+                            <td>
+                                <div class="light-blue">
+                                    Fax No:
+                                </div>
+                            </td>
+                            <td>
+                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="light-blue">
+                                    eMail:
+                                </div>
+                            </td>
+                            <td>
+                                
+                            </td>
+                            <td style="width: 25%; word-wrap: break-word;">
+                                <div class="light-blue">
+                                    eMail:
+                                </div>
+                            </td>
+                            <td style="width: 25%; word-wrap: break-word;">
+                                adam.testerski@hitachi-powergrids.com
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+
+                            </td>
+                            <td>
+                                
+                            </td>
+                            <td>
+                                <div class="light-blue">
+                                    Currency:
+                                </div>
+                            </td>
+                            <td>
+                                Australian Dollar New
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            
+            <tr>
+                <td colspan="2">
+                    <table>
+                        <tr class="heading">
+                            <td>
+                                Item
+                            </td>
+                            <td>
+                                Descriptions
+                            </td>
+                            <td>
+                                <span>Qty</span>&nbsp;&nbsp;<span>Unit</span><br />
+                                Delivery Date
+                            </td>
+                            <td>
+                                Unit Price <br/>
+                                Total Price
+                            </td>
+                        </tr>
+                        {{range $i, $item := .items}}
+                            <tr class="details">
+                                <td>
+                                    {{$i}}
+                                </td>
+                                <td>
+                                    {{.description}}
+                                </td>
+                                <td>
+                                    <span>{{.quantity}}</span>&nbsp;&nbsp;<span>{{.unit}}</span><br />
+                                    {{.delivery_date}}
+                                </td>
+                                <td>
+                                    {{.unit_price}} <br/>
+                                    {{.total_price}}
+                                </td>
+                            </tr>
+                        {{end}}
+                        <tr class="summary">
+                            <td colspan="2">
+                                {{.summary.total_number_of_items}}
+                            </td>
+                            <td colspan="2">
+                                {{.summary.total_value}}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
