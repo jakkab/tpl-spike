@@ -144,11 +144,17 @@
         position: fixed;
         top: 0mm;
         width: 100%;
+        margin-bottom: 25px;
     }
 
     .page {
         page-break-before: always;
         page-break-after: always;
+    }
+
+    .header-footer-row {
+        table-layout: auto;
+        width: 100%;
     }
 
     @page {
@@ -165,7 +171,7 @@
 
 <body>
     <div class="page-header" style="text-align: left">
-        <table>
+        <table class="">
             <tr>
                 <td>
                     <img src="https://upload.wikimedia.org/wikipedia/commons/0/00/ABB_logo.svg" width="40" height="16" alt="ABB Logo"> 
@@ -187,7 +193,7 @@
     </div>
 
     <div class="page-footer" style="text-align: left">
-        <table>
+        <table class="">
             <tr>
                 <td>
                     <img src="https://upload.wikimedia.org/wikipedia/commons/0/00/ABB_logo.svg" width="40" height="16" alt="ABB Logo"> 
