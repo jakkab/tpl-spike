@@ -138,16 +138,12 @@
         position: fixed;
         bottom: 0;
         width: 100%;
-        border-top: 1px solid black; /* for demo */
-        background: yellow; /* for demo */
     }
 
     .page-header {
         position: fixed;
         top: 0mm;
         width: 100%;
-        border-bottom: 1px solid black; /* for demo */
-        background: yellow; /* for demo */
     }
 
     .page {
@@ -168,12 +164,30 @@
 </head>
 
 <body>
-    <div class="page-header" style="text-align: center">
+    <div class="page-header" style="text-align: left">
         I'm The Header
     </div>
 
-    <div class="page-footer" style="text-align: center">
-        I'm The Footer
+    <div class="page-footer" style="text-align: left">
+        <table>
+            <tr>
+                <td>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/00/ABB_logo.svg" width="100" height="40" alt="ABB Logo"> 
+                </td>
+                <td>
+                    Produced by ABB
+                </td>
+                <td>
+                    Purchase Order: {{.number}}
+                </td>
+                <td>
+                    Version: {{.version}}    
+                </td>
+                <td>
+                    Page 1 of 1 
+                </td>
+            </tr>
+        </table>
     </div>
     <div class="workorder-box">
         <table cellpadding="0" cellspacing="0">
