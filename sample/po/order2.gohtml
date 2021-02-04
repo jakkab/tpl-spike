@@ -157,6 +157,10 @@
         width: 100%;
     }
 
+    @media print {
+        .pagebreak { page-break-before: always; page-break-after: always; }
+    }
+
     /* custom config end */
 
     </style>
@@ -407,6 +411,9 @@
                 </tr>
             </tfoot>
         </table>
+        <div class="pagebreak" style="text-align: left">
+            Page break before and after this text
+        </div>
     </div>
 </body>
 </html>
