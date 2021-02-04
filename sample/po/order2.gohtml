@@ -123,13 +123,8 @@
         text-align: left;
     }
 
-    .page-header, .page-header-space {
+    .page-header, .page-header-space, .page-footer, .page-footer-space {
         height: 50px;
-    }
-
-    .page-footer, .page-footer-space {
-        height: 50px;
-
     }
 
     .page-footer {
@@ -140,23 +135,18 @@
 
     .page-header {
         position: fixed;
-        margin-top: 15px;
+        top: 0;
         width: 100%;
     }
 
-    .page {
+    .pagebreak {
         page-break-before: always;
-        page-break-after: always;
     }
 
     .header-footer-row {
         font-size: 9px;
         table-layout: auto;
         width: 100%;
-    }
-
-    @media print {
-        .pagebreak { page-break-before: always; page-break-after: always; }
     }
 
     /* custom config end */
@@ -195,7 +185,7 @@
             <thead>
                 <tr>
                     <td>
-                        <div class="page-header-space"></div>
+                        <div class="page-header-space">&nbsp;</div>
                     </td>
                 </tr>
             </thead>
@@ -404,13 +394,13 @@
             <tfoot>
                 <tr>
                     <td>
-                        <div class="page-footer-space"></div>
+                        <div class="page-footer-space">&nbsp;</div>
                     </td>
                 </tr>
             </tfoot>
         </table>
         <div class="pagebreak" style="text-align: left">
-            Page break before and after this text
+            Page break before this text
         </div>
     </div>
 </body>
