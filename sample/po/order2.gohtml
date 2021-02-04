@@ -152,16 +152,9 @@
     }
 
     .header-footer-row {
-        font-size: 8px;
+        font-size: 9px;
         table-layout: auto;
         width: 100%;
-    }
-
-    @page {
-        @bottom-left {
-            content: counter(page) "/" counter(pages);
-        }
-        margin: 20mm
     }
 
     /* custom config end */
@@ -170,6 +163,18 @@
 </head>
 
 <body>
+    <div class="page-header" style="text-align: left">
+        <table class="header-footer-row">
+            <tr>
+                <td>
+                    Purchase Order: {{.number}}
+                </td>
+                <td>
+                    Version: {{.version}}    
+                </td>
+            </tr>
+        </table>
+    </div>
 
     <div class="page-footer" style="text-align: left">
         <table class="header-footer-row">
