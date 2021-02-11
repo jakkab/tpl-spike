@@ -17,22 +17,6 @@
             "delivery_date": "21/02/2021",
             "unit_price": "100",
             "total_price": "1000"
-        },
-        {
-            "description": "CHERRY PIE",
-            "quantity": "1",
-            "unit": "EA",
-            "delivery_date": "21/02/2021",
-            "unit_price": "20",
-            "total_price": "20"
-        },
-        {
-            "description": "BUMBULATOR TRÓJFAZOWY WSTECZNY Z PRZYCZŁAPKĄ BOCZNĄ",
-            "quantity": "1",
-            "unit": "PK",
-            "delivery_date": "21/02/2021",
-            "unit_price": "1500,2900",
-            "total_price": "1500,2900"
         }
     ],
     "summary": {
