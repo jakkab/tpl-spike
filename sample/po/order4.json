@@ -7,28 +7,32 @@
             "quantity": "",
             "unit": "EA",
             "delivery_date": "21/02/2021",
-            "unit_price": "100"
+            "unit_price": "100",
+            "total": "100"
         },
         {
             "description": "RESPIRATOR FILTER",
             "quantity": "10",
             "unit": "PK",
             "delivery_date": "21/02/2021",
-            "unit_price": "100"
+            "unit_price": "100",
+            "total": "1000"
         },
         {
             "description": "3-4 TON EXCAVATOR|QTY:4.00 HUR|START DATE:21/10/2020",
             "quantity": "",
             "unit": "EA",
             "delivery_date": "21/02/2021",
-            "unit_price": "400"
+            "unit_price": "400",
+            "total": "400"
         },
         {
             "description": "ELECTRICAL SWITCHBOARD",
             "quantity": "1",
             "unit": "PK",
             "delivery_date": "21/02/2021",
-            "unit_price": "1500,2900"
+            "unit_price": "1500,2900",
+            "total": "1500,2900"
         }
     ],
     "summary": {
