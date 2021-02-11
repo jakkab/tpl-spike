@@ -17,10 +17,26 @@
             "delivery_date": "21/02/2021",
             "unit_price": "100",
             "total_price": "1000"
+        },
+        {
+            "description": "3-4 TON EXCAVATOR|QTY:4.00 HUR|START DATE:21/10/2020",
+            "quantity": "",
+            "unit": "EA",
+            "delivery_date": "21/02/2021",
+            "unit_price": "400",
+            "total_price": "400"
+        },
+        {
+            "description": "ELECTRICAL SWITCHBOARD",
+            "quantity": "1",
+            "unit": "PK",
+            "delivery_date": "21/02/2021",
+            "unit_price": "1500,2900",
+            "total_price": "1500,2900"
         }
     ],
     "summary": {
-        "total_number_of_items": "Total Number Of Items : 3",
+        "total_number_of_items": "Total Number Of Items : 4",
         "total_value": "Total P.O. Value Ex GST: 1,916.99"
     }
 }
